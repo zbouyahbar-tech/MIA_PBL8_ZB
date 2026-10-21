@@ -62,6 +62,27 @@ def calcul():
     return "Opération inconnue : choisissez op=plus, moins, fois ou divise."
 
 
+@app.get("/formulaire")
+def formulaire():
+    return render_template("formulaire.html")
+
+
+@app.route("/salut", methods=["GET", "POST"])
+def salut():
+    if request.method == "POST":
+        donnees = request.form  # POST : les données sont dans le corps de la requête
+    else:
+        donnees = request.args  # GET : les données sont dans l'URL, après le "?"
+    prenom = donnees.get("prenom", "inconnu")
+    ville = donnees.get("ville", "nulle part")
+    couleur = donnees.get("couleur", "teal")
+    # On n'accepte que les couleurs proposées par le formulaire
+    if couleur not in ["tomato", "teal", "royalblue"]:
+        couleur = "teal"
+    return render_template("salut.html", prenom=prenom, ville=ville,
+                           couleur=couleur, methode=request.method)
+
+
 # ---------------------------------------------------------------
 #  Ne pas modifier : utile seulement pour lancer le site
 #  sur votre propre ordinateur (python flask_app.py)
