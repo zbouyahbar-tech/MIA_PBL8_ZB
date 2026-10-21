@@ -8,7 +8,7 @@
 #  Les consignes sont dans le dossier "exercices/".
 # ---------------------------------------------------------------
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -36,6 +36,30 @@ def presentation():
 @app.get("/loisirs")
 def loisirs():
     return render_template("loisirs.html", loisirs=LOISIRS)
+
+
+@app.get("/bonjour/<prenom>")
+def bonjour(prenom):
+    # Avec un template (et non un f"..."), le HTML envoyé par le visiteur est neutralisé
+    return render_template("bonjour.html", prenom=prenom)
+
+
+@app.get("/calcul")
+def calcul():
+    a = int(request.args.get("a", 0))
+    b = int(request.args.get("b", 0))
+    op = request.args.get("op", "plus")
+    if op == "plus":
+        return f"{a} + {b} = {a + b}"
+    if op == "moins":
+        return f"{a} - {b} = {a - b}"
+    if op == "fois":
+        return f"{a} × {b} = {a * b}"
+    if op == "divise":
+        if b == 0:
+            return "Division par zéro impossible !"
+        return f"{a} ÷ {b} = {a / b}"
+    return "Opération inconnue : choisissez op=plus, moins, fois ou divise."
 
 
 # ---------------------------------------------------------------

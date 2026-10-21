@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block titre %}Bonjour{% endblock %}
+
+{% block contenu %}
+    {# Le template échappe automatiquement {{ prenom }} : un visiteur
+       qui tape /bonjour/<button>... ne peut plus injecter de HTML. #}
+    <h1>Bonjour {{ prenom }} !</h1>
+{% endblock %}
