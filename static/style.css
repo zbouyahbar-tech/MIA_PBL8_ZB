@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 0 16px;
+    background-color: #f5f1ea;
+    color: #222;
+}
+
+h1 {
+    color: teal;
+}
+
+h2 {
+    color: #555;
+}
+
+nav {
+    padding-bottom: 10px;
+    border-bottom: 2px solid teal;
+}
+
+nav a {
+    margin-right: 15px;
+    color: tomato;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}

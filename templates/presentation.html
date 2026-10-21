@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <title>Présentation</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block titre %}Présentation{% endblock %}
+
+{% block contenu %}
     <h1>{{ prenom }} {{ nom }}</h1>
     <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="100">
     <p>Je suis <strong>étudiant ingénieur</strong> et je découvre le fonctionnement du Web.</p>
@@ -14,5 +12,4 @@
         <li>{{ loisir }}</li>
     {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}

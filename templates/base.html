@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>{% block titre %}Mon site{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    {# Le menu est écrit une seule fois ici : toutes les pages qui
+       commencent par extends "base.html" le récupèrent automatiquement. #}
+    <nav>
+        <a href="/">Accueil</a>
+        <a href="/presentation">Présentation</a>
+        <a href="/loisirs">Loisirs</a>
+    </nav>
+    {% block contenu %}{% endblock %}
+</body>
+</html>

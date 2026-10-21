@@ -12,13 +12,16 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
+# Mes loisirs, utilisés par les pages /presentation et /loisirs
+LOISIRS = ["Coder des applications et des jeux", "Le sport", "La musique"]
+
 
 # Une "route" associe une adresse (URL) à une fonction Python.
 # Ici : quand quelqu'un visite la page d'accueil "/",
 # Flask exécute la fonction accueil() et renvoie son résultat au navigateur.
 @app.get("/")
 def accueil():
-    return "Bienvenue chez le grand méchant loup"
+    return render_template("accueil.html")
 
 
 # ---------------------------------------------------------------
@@ -27,12 +30,12 @@ def accueil():
 @app.get("/presentation")
 def presentation():
     return render_template("presentation.html", prenom="Zacharie", nom="Bouyahbar",
-                           loisirs=["Coder des applications et des jeux", "Le sport", "La musique"])
+                           loisirs=LOISIRS)
 
 
 @app.get("/loisirs")
 def loisirs():
-    return "Mes loisirs : coder des applications et des jeux, le sport et la musique."
+    return render_template("loisirs.html", loisirs=LOISIRS)
 
 
 # ---------------------------------------------------------------
