@@ -87,19 +87,19 @@
 
 1. Que signifie HTTP ? Qui envoie la **requête** et qui envoie la **réponse** ?
 
-   > _Ma réponse :_ HTTP veut dire HyperText Transfer Protocol, et c'est justement la règle de la « conversation entre le navigateur et le serveur », car c'est le navigateur qui envoie la requête et c'est le serveur qui renvoie la réponse, et jamais l'inverse, car le serveur ne parle que quand on lui pose une question.
+   > _Ma réponse :_ 
 
 2. Combien de requêtes votre page `/presentation` a-t-elle déclenchées ? Lesquelles ?
 
-   > _Ma réponse :_ La page `/presentation` a déclenché quatre requêtes, `presentation` (la page HTML, code 200), `style.css` (200), `Python-logo-notext.svg` (l'image chez Wikimedia, 200) et `favicon.ico` (404), mais dans mon Access log on voit que Safari n'a demandé la favicon qu'à ma première visite, ce qui voudrait dire qu'il se souvient ensuite qu'elle n'existe pas et qu'il ne fait plus que trois requêtes.
+   > _Ma réponse :_ 
 
 3. Que signifie le code `200` ? Et le code `404` de la favicon ?
 
-   > _Ma réponse :_ Le code `200` veut dire OK, donc que la requête a fonctionné, et le code `404` de la favicon veut dire Not Found, car mon site n'a pas d'icône et le serveur répond donc qu'il ne trouve pas le fichier demandé.
+   > _Ma réponse :_ 
 
 4. Pourquoi les modifications faites dans l'onglet Éléments ne sont-elles pas visibles par les autres visiteurs ?
 
-   > _Ma réponse :_ Car je ne modifie que la copie de la page qui est dans mon navigateur, sur mon ordinateur, alors que le fichier sur le serveur, lui, n'a pas changé, donc dès que je recharge la page ou que quelqu'un d'autre la demande, le serveur renvoie la version d'origine.
+   > _Ma réponse :_ 
 
 ---
 
@@ -107,15 +107,15 @@
 
 1. Dans l'URL `https://www.youtube.com/results?search_query=chat`, quel est le nom du paramètre ? Quelle est sa valeur ?
 
-   > _Ma réponse :_ Le paramètre s'appelle `search_query` et sa valeur est `chat`, car tout ce qui se trouve après le `?` est une paire nom=valeur.
+   > _Ma réponse :_ 
 
 2. Pourquoi le serveur plante-t-il avec `a=bonjour` ? Que faudrait-il faire pour l'éviter ?
 
-   > _Ma réponse :_ Car le code fait `int("bonjour")` et Python ne peut pas transformer « bonjour » en nombre, donc il lève l'erreur `ValueError: invalid literal for int() with base 10: 'bonjour'` et le serveur renvoie une erreur 500, et pour l'éviter, il faudrait vérifier la valeur avant de la convertir (par exemple avec un `try` / `except`) pour renvoyer un message clair au lieu de planter.
+   > _Ma réponse :_ 
 
 3. Pourquoi est-il dangereux d'afficher **tel quel** ce que l'utilisateur envoie ?
 
-   > _Ma réponse :_ Car si le serveur affiche tel quel ce que l'utilisateur envoie, l'utilisateur pourrait glisser du HTML et même du JavaScript dans la page, comme le bouton qui apparaissait avec `/bonjour/<button>Cliquez-moi`, et dans ce cas ce que l'utilisateur envoie au site pourrait devenir la cause de la perte du site, car un script pourrait voler les informations des autres visiteurs, alors qu'avec un template, les `<` et `>` sont transformés en `&lt;` et `&gt;` et s'affichent comme du simple texte.
+   > _Ma réponse :_ 
 
 ---
 
@@ -123,15 +123,15 @@
 
 1. Quelle est la différence visible entre GET et POST ?
 
-   > _Ma réponse :_ En GET, les données apparaissent dans l'URL (`/salut?prenom=Zacharie&ville=Paris…`), alors qu'en POST l'URL reste `/salut` et les données passent dans le corps de la requête, qu'on ne voit que dans l'onglet Réseau (Charge utile), et c'est aussi pour ça qu'en POST, le navigateur demande s'il faut renvoyer le formulaire quand on recharge la page.
+   > _Ma réponse :_ 
 
 2. Pour un formulaire de **recherche**, quelle méthode choisiriez-vous ? Et pour un formulaire de **connexion avec mot de passe** ? Pourquoi ?
 
-   > _Ma réponse :_ Pour une recherche, je choisirais GET, car on pourrait copier le lien, le partager ou le mettre en favori, et pour une connexion, je choisirais POST, car le mot de passe n'apparaîtrait ni dans l'URL, ni dans l'historique, ni dans le journal du serveur.
+   > _Ma réponse :_ 
 
 3. Les données envoyées en POST sont-elles vraiment « secrètes » ? (Pensez à ce que vous avez vu dans l'onglet Réseau.)
 
-   > _Ma réponse :_ Non, car les données ne sont plus dans l'URL mais elles voyagent quand même dans la requête, et on les lit très facilement dans l'onglet Réseau, ce qui reviendrait à dire que le POST cache les données de l'URL mais pas de la requête, et donc ce qui les protège vraiment pendant le trajet, c'est le HTTPS, pas le POST.
+   > _Ma réponse :_ 
 
 ---
 
@@ -139,15 +139,15 @@
 
 1. Quelle est la différence entre une erreur `4xx` et une erreur `5xx` ? Qui est « fautif » dans chaque cas ?
 
-   > _Ma réponse :_ Si on reprend la grille des familles de codes (2xx pour un succès, 3xx pour une redirection, 4xx pour une erreur du client et 5xx pour une erreur du serveur), une erreur 4xx voudrait dire que c'est le client qui a fait une mauvaise demande, comme une page qui n'existe pas (404) ou une page interdite (403), alors qu'une erreur 5xx voudrait dire que c'est le serveur qui est fautif, à cause d'un bug dans le code, comme le 500 de `/calcul?a=bonjour`, ou d'une panne.
+   > _Ma réponse :_ 
 
 2. Comment fonctionne une redirection ? Qui fait la deuxième requête : le serveur ou le navigateur ?
 
-   > _Ma réponse :_ Quand je vais sur `/home`, le serveur ne renvoie pas de page mais seulement le code `302` avec l'en-tête `Location: /`, et dès que le navigateur lit cet en-tête, il refait tout seul une deuxième requête vers `/`, donc c'est le navigateur qui fait la deuxième requête, et on voit bien les deux dans l'onglet Réseau.
+   > _Ma réponse :_ 
 
 3. Donnez un exemple de situation où un vrai site utilise une redirection.
 
-   > _Ma réponse :_ Quand on tape une adresse en `http://`, le site nous renvoie vers sa version en `https://`, et c'est aussi une redirection qui nous renvoie vers notre page de profil juste après une connexion.
+   > _Ma réponse :_ 
 
 ---
 
@@ -155,19 +155,19 @@
 
 1. Citez trois informations que le serveur connaît sur vous, sans que vous ayez rien rempli.
 
-   > _Ma réponse :_ Sans que j'aie rien rempli, le serveur connaît mon adresse IP, mon navigateur et mon système (le `User-Agent` dit que je suis sur Safari, sur Mac) et mes langues préférées (`Accept-Language`), et il connaît même l'heure de ma visite et la page d'où je viens (`Referer`).
+   > _Ma réponse :_ 
 
 2. À quoi peut servir l'en-tête `Accept-Language` pour un site comme Wikipédia ?
 
-   > _Ma réponse :_ Dans le cas de Wikipédia, cet en-tête pourrait servir à m'afficher directement la page en français, ou à me proposer la version française, car le site saurait déjà quelle langue je préfère sans que j'aie à la choisir moi-même.
+   > _Ma réponse :_ 
 
 3. Dans l'Access log, retrouvez une requête qui a reçu un code `404`. Quelle page était demandée ?
 
-   > _Ma réponse :_ Dans mon Access log, la requête `GET /favicon.ico` a reçu un code `404` le 21/10/2026 à 12:20 UTC (14:20 à Paris), juste après ma première visite de la page d'accueil, car c'est Safari qui a demandé tout seul l'icône de l'onglet, et mon site n'en a pas.
+   > _Ma réponse :_ 
 
 4. Après cet exercice, que pensez-vous de la notion de « navigation anonyme » ?
 
-   > _Ma réponse :_ Après cet exercice, la navigation anonyme n'aurait d'anonyme que le nom, car la navigation privée empêche seulement mon navigateur de garder l'historique et les cookies sur mon ordinateur, mais le serveur, lui, voit toujours mon IP, mon navigateur et mes langues, et il note tout dans son journal, et c'est là que tout se joue : elle est anonyme pour mon ordinateur mais pas du tout pour le serveur.
+   > _Ma réponse :_ 
 
 ---
 
@@ -175,15 +175,15 @@
 
 1. Quelle est la différence entre une page HTML et une réponse JSON ? À qui chacune est-elle destinée ?
 
-   > _Ma réponse :_ Une page HTML est faite pour être affichée à un humain par un navigateur, avec des titres et de la mise en forme, alors qu'une réponse JSON ne contient que des données brutes (des paires clé : valeur), faites pour être lues par un programme, comme mon `/api/heure` qui répond avec le `Content-Type` `application/json` au lieu de `text/html`.
+   > _Ma réponse :_ 
 
 2. Dans la page `/horloge`, quel code s'exécute sur le **serveur** et quel code s'exécute dans le **navigateur** ?
 
-   > _Ma réponse :_ Sur le serveur, c'est le Python de `flask_app.py` qui s'exécute, avec la route `/horloge` qui envoie la page et la route `/api/heure` qui calcule l'heure, alors que dans le navigateur, c'est le JavaScript entre les balises `<script>` qui s'exécute, car c'est lui qui appelle `fetch("/api/heure")` toutes les secondes et qui remplace le texte, donc la page n'est jamais rechargée et on ne voit dans l'onglet Réseau qu'une petite requête `heure` par seconde.
+   > _Ma réponse :_ 
 
 3. Citez une application de votre téléphone qui, selon vous, utilise une API. Quelles données échange-t-elle ?
 
-   > _Ma réponse :_ L'application Météo utiliserait une API, car elle envoie ma position ou une ville à un serveur, et elle reçoit en JSON la température, le ciel et les prévisions, qu'elle affiche ensuite à sa façon.
+   > _Ma réponse :_ 
 
 ---
 
@@ -191,6 +191,4 @@
 
 En quelques phrases, expliquez à un ami ce qui se passe entre le moment où il tape une adresse dans son navigateur et celui où la page s'affiche :
 
-> _Ma réponse :_ Donc finalement, quand on tape une adresse, le navigateur découpe l'URL, car le nom de domaine lui dit à quel serveur parler et le chemin quelle page demander, puis il envoie une requête HTTP avec ses en-têtes, et le serveur trouve la route qui correspond, exécute le code, fabrique la page HTML à partir d'un template et renvoie une réponse avec un code (200, 302, 404…), et dès que le navigateur lit cette page, il refait une requête pour chaque fichier dont elle a besoin, le CSS et les images, avant de tout assembler et d'afficher la page, donc afficher une page Web est bien une « conversation entre le navigateur et le serveur ».
->
-> D'autres services pourraient être aussi qualifiés de « conversation entre le navigateur et le serveur », comme l'API de GitHub, qui a donc comme mon site des requêtes et des réponses, mais qui répond en JSON et qui renvoie par exemple, sur mon profil, le nombre de mes dépôts publics (trois).
+> _Ma réponse :_ 

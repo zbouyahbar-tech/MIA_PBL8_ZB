@@ -8,9 +8,7 @@
 #  Les consignes sont dans le dossier "exercices/".
 # ---------------------------------------------------------------
 
-from flask import Flask, render_template, request, redirect, abort, jsonify
-from datetime import datetime
-from zoneinfo import ZoneInfo
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -38,101 +36,6 @@ def presentation():
 @app.get("/loisirs")
 def loisirs():
     return render_template("loisirs.html", loisirs=LOISIRS)
-
-
-@app.get("/bonjour/<prenom>")
-def bonjour(prenom):
-    # Avec un template (et non un f"..."), le HTML envoyé par le visiteur est neutralisé
-    return render_template("bonjour.html", prenom=prenom)
-
-
-@app.get("/calcul")
-def calcul():
-    a = int(request.args.get("a", 0))
-    b = int(request.args.get("b", 0))
-    op = request.args.get("op", "plus")
-    if op == "plus":
-        return f"{a} + {b} = {a + b}"
-    if op == "moins":
-        return f"{a} - {b} = {a - b}"
-    if op == "fois":
-        return f"{a} × {b} = {a * b}"
-    if op == "divise":
-        if b == 0:
-            return "Division par zéro impossible !"
-        return f"{a} ÷ {b} = {a / b}"
-    return "Opération inconnue : choisissez op=plus, moins, fois ou divise."
-
-
-@app.get("/formulaire")
-def formulaire():
-    return render_template("formulaire.html")
-
-
-@app.route("/salut", methods=["GET", "POST"])
-def salut():
-    if request.method == "POST":
-        donnees = request.form  # POST : les données sont dans le corps de la requête
-    else:
-        donnees = request.args  # GET : les données sont dans l'URL, après le "?"
-    prenom = donnees.get("prenom", "inconnu")
-    ville = donnees.get("ville", "nulle part")
-    couleur = donnees.get("couleur", "teal")
-    # On n'accepte que les couleurs proposées par le formulaire
-    if couleur not in ["tomato", "teal", "royalblue"]:
-        couleur = "teal"
-    return render_template("salut.html", prenom=prenom, ville=ville,
-                           couleur=couleur, methode=request.method)
-
-
-# 3xx : une redirection
-@app.get("/home")
-def home():
-    return redirect("/")
-
-
-# 4xx : un accès interdit
-@app.get("/secret")
-def secret():
-    abort(403)
-
-
-# Une page d'erreur 404 personnalisée
-@app.errorhandler(404)
-def page_introuvable(erreur):
-    return render_template("404.html"), 404
-
-
-# Une page d'erreur 403 personnalisée
-@app.errorhandler(403)
-def acces_interdit(erreur):
-    return render_template("403.html"), 403
-
-
-@app.get("/moi")
-def moi():
-    return render_template(
-        "moi.html",
-        ip=request.headers.get("X-Real-IP", request.remote_addr),
-        navigateur=request.headers.get("User-Agent"),
-        langues=request.headers.get("Accept-Language"),
-        entetes=request.headers,
-    )
-
-
-@app.get("/api/heure")
-def api_heure():
-    maintenant = datetime.now(ZoneInfo("Europe/Paris"))
-    return jsonify({
-        "heure": maintenant.strftime("%H:%M:%S"),
-        "date": maintenant.strftime("%d/%m/%Y"),
-        "message": "Bonjour depuis mon API !",
-    })
-
-
-@app.get("/horloge")
-def horloge():
-    return render_template("horloge.html")
 
 
 # ---------------------------------------------------------------
