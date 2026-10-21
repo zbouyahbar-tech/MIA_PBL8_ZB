@@ -31,7 +31,7 @@
 
 2. Que veut dire le message *Not Found* ? Qui l'a envoyé : votre navigateur ou le serveur ?
 
-   > _Ma réponse :_ Ça veut dire que la page demandée n'existe pas (erreur 404). C'est le serveur qui l'envoie : il a bien reçu la demande, mais il n'a aucune route pour ce chemin. Même chose pour `/Presentation` (avec une majuscule) et `/presentation/` (avec un `/` à la fin) : pour Flask, ce sont d'autres chemins.
+   > _Ma réponse :_ Le serveur a envoyé le message d'erreur (code 404) pour dire que ce qui a été recherché n'a pas été trouvé : il n'a aucune route pour ce chemin. Même chose pour `/Presentation` (avec une majuscule) et `/presentation/` (avec un `/` à la fin) : pour Flask, ce sont d'autres chemins.
 
 3. Que se passe-t-il si deux fonctions portent le même nom dans `flask_app.py` ? (Indice : essayez, puis lisez l'Error log.)
 
