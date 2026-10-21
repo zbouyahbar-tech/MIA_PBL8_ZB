@@ -107,6 +107,17 @@ def acces_interdit(erreur):
     return render_template("403.html"), 403
 
 
+@app.get("/moi")
+def moi():
+    return render_template(
+        "moi.html",
+        ip=request.headers.get("X-Real-IP", request.remote_addr),
+        navigateur=request.headers.get("User-Agent"),
+        langues=request.headers.get("Accept-Language"),
+        entetes=request.headers,
+    )
+
+
 # ---------------------------------------------------------------
 #  Ne pas modifier : utile seulement pour lancer le site
 #  sur votre propre ordinateur (python flask_app.py)
