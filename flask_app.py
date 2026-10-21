@@ -26,7 +26,17 @@ def accueil():
 # ---------------------------------------------------------------
 @app.get("/presentation")
 def presentation():
-    return "Je m'appelle Zacharie Bouyahbar et je suis étudiant ingénieur."
+    return """
+    <h1>Zacharie Bouyahbar</h1>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="100">
+    <p>Je suis <strong>étudiant ingénieur</strong> et je découvre le fonctionnement du Web.</p>
+    <h2>Ce que j'aime</h2>
+    <ul>
+        <li>Coder des applications et des jeux</li>
+        <li>Le sport</li>
+        <li>La musique</li>
+    </ul>
+    """
 
 
 @app.get("/loisirs")
