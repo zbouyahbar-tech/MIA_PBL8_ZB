@@ -8,12 +8,11 @@
 #  Les consignes sont dans le dossier "exercices/".
 # ---------------------------------------------------------------
 
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
+
+from contenu import contenu, EMAIL
 
 app = Flask(__name__)
-
-# Mes loisirs, utilisés par les pages /presentation et /loisirs
-LOISIRS = ["Coder des applications et des jeux", "Le sport", "La musique"]
 
 
 # Une "route" associe une adresse (URL) à une fonction Python.
@@ -21,21 +20,28 @@ LOISIRS = ["Coder des applications et des jeux", "Le sport", "La musique"]
 # Flask exécute la fonction accueil() et renvoie son résultat au navigateur.
 @app.get("/")
 def accueil():
-    return render_template("accueil.html")
+    return render_template("index.html", t=contenu("fr"), lang="fr", email=EMAIL)
+
+
+# La même page en anglais : seul le texte change, le template est le même
+@app.get("/en")
+def accueil_anglais():
+    return render_template("index.html", t=contenu("en"), lang="en", email=EMAIL)
 
 
 # ---------------------------------------------------------------
 #  Ajoutez vos nouvelles routes ci-dessous 👇
 # ---------------------------------------------------------------
+# Ma présentation et mes loisirs sont maintenant des sections de l'accueil :
+# ces anciennes adresses renvoient vers la bonne section.
 @app.get("/presentation")
 def presentation():
-    return render_template("presentation.html", prenom="Zacharie", nom="Bouyahbar",
-                           loisirs=LOISIRS)
+    return redirect("/#apropos")
 
 
 @app.get("/loisirs")
 def loisirs():
-    return render_template("loisirs.html", loisirs=LOISIRS)
+    return redirect("/#loisirs")
 
 
 # ---------------------------------------------------------------

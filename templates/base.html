@@ -1,18 +1,66 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{ lang }}">
 <head>
     <meta charset="utf-8">
-    <title>{% block titre %}Mon site{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ t.meta.titre }}</title>
+    <meta name="description" content="{{ t.meta.description }}">
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+    <link rel="alternate" hreflang="fr" href="/">
+    <link rel="alternate" hreflang="en" href="/en">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Stack+Sans+Headline:wght@400;500;600&family=Stack+Sans+Text:wght@400;500&display=swap">
     <link rel="stylesheet" href="/static/style.css">
+
+    {# three.js est chargé depuis un CDN : la carte d'import dit au navigateur où le trouver #}
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+        }
+    }
+    </script>
 </head>
 <body>
+    {# Le fond 3D, dessiné par static/js/scene.js #}
+    <canvas id="scene" aria-hidden="true"></canvas>
+    <div class="voile" aria-hidden="true"></div>
+
     {# Le menu est écrit une seule fois ici : toutes les pages qui
        commencent par extends "base.html" le récupèrent automatiquement. #}
-    <nav>
-        <a href="/">Accueil</a>
-        <a href="/presentation">Présentation</a>
-        <a href="/loisirs">Loisirs</a>
+    <nav class="menu">
+        <a class="menu-nom" href="{{ '/' if lang == 'fr' else '/en' }}"><span class="pastille"></span>Zacharie Bouyahbar</a>
+        <div class="menu-liens">
+            <a href="#projets">{{ t.menu.projets }}</a>
+            <a href="#parcours">{{ t.menu.parcours }}</a>
+            <a href="#apropos">{{ t.menu.apropos }}</a>
+        </div>
+        <div class="menu-droite">
+            <div class="langues" aria-label="Langue / Language">
+                <a href="/" class="{{ 'actif' if lang == 'fr' }}" hreflang="fr">FR</a>
+                <a href="/en" class="{{ 'actif' if lang == 'en' }}" hreflang="en">EN</a>
+            </div>
+            <a class="bouton petit" href="#contact">{{ t.menu.contact }}</a>
+        </div>
     </nav>
-    {% block contenu %}{% endblock %}
+
+    <main>
+        {% block contenu %}{% endblock %}
+    </main>
+
+    <footer class="pied">
+        <div class="conteneur">
+            <span class="etiquette">© 2026 Zacharie Bouyahbar</span>
+            <span class="etiquette">{{ t.pied.credit }}</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script type="module" src="/static/js/scene.js"></script>
+    <script src="/static/js/site.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,240 @@
+{% extends "base.html" %}
+
+{% block contenu %}
+
+{# ---------- Héros ---------- #}
+<section class="heros" id="haut">
+    <div class="conteneur">
+        <p class="etiquette"><span class="num">[01]</span>{{ t.heros.etiquette }}</p>
+        <h1>
+            {% for ligne in t.heros.lignes %}
+            <span class="ligne-masque"><span>{{ ligne }}</span></span>
+            {% endfor %}
+        </h1>
+        <p class="chapeau reveler">{{ t.heros.chapeau }}</p>
+        <div class="actions reveler">
+            <a class="bouton" href="#projets">{{ t.heros.bouton_projets }} <span class="fleche">→</span></a>
+            <a class="bouton contour" href="#contact">{{ t.heros.bouton_contact }}</a>
+        </div>
+    </div>
+    <div class="defiler" aria-hidden="true">
+        <span class="etiquette">{{ t.heros.defiler }}</span>
+        <span class="trait"></span>
+    </div>
+</section>
+
+{# ---------- Bandeau défilant ---------- #}
+<div class="bandeau" aria-hidden="true">
+    <div class="bandeau-piste">
+        {# La liste est écrite deux fois pour que la boucle soit sans coupure #}
+        {% for tour in range(2) %}
+            {% for mot in t.bandeau %}<span>{{ mot }}</span>{% endfor %}
+        {% endfor %}
+    </div>
+</div>
+
+{# ---------- À propos ---------- #}
+<section class="section" id="apropos">
+    <div class="conteneur apropos">
+        <div class="reveler">
+            <p class="etiquette"><span class="num">[02]</span>{{ t.apropos.etiquette }}</p>
+            <p class="texte">{{ t.apropos.texte }} <span class="doux">{{ t.apropos.doux }}</span></p>
+        </div>
+        <div class="chiffres reveler">
+            {% for c in t.apropos.chiffres %}
+            <div class="chiffre">
+                <strong data-valeur="{{ c.valeur }}" data-suffixe="{{ c.suffixe }}">0</strong>
+                <span class="etiquette">{{ c.legende }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{# ---------- Compétences ---------- #}
+<section class="section">
+    <div class="conteneur">
+        <div class="entete-section reveler">
+            <div>
+                <p class="etiquette"><span class="num">[03]</span>{{ t.competences.etiquette }}</p>
+                <h2>{{ t.competences.titre }}</h2>
+            </div>
+            <p>{{ t.competences.texte }}</p>
+        </div>
+        <div class="competences reveler">
+            {% for c in t.competences.liste %}
+            <article class="competence">
+                <span class="etiquette num">0{{ loop.index }}</span>
+                <h3>{{ c.titre }}</h3>
+                <p>{{ c.texte }}</p>
+                <span class="outils">{{ c.outils }}</span>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{# ---------- Projets ---------- #}
+<section class="section" id="projets">
+    <div class="conteneur">
+        <div class="entete-section reveler">
+            <div>
+                <p class="etiquette"><span class="num">[04]</span>{{ t.projets.etiquette }}</p>
+                <h2>{{ t.projets.titre }}</h2>
+            </div>
+            <p>{{ t.projets.texte }}</p>
+        </div>
+
+        <div class="projets">
+            {% for p in t.projets.principaux %}
+            <article class="projet large reveler">
+                <div class="projet-visuel" data-incliner>
+                    <div class="ecrans">
+                        {% for c in p.captures %}
+                        <img class="ecran ecran-{{ loop.index }}" src="/static/img/captures/{{ c }}.jpg" alt="{{ p.nom }}" loading="lazy">
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="projet-infos">
+                    <div class="projet-haut">
+                        <span class="etiquette">{{ p.etiquette }}</span>
+                        <span class="statut">{{ p.statut }}</span>
+                    </div>
+                    <h3>{{ p.nom }}</h3>
+                    <p>{{ p.texte }}</p>
+                    <div class="fait">
+                        <span class="etiquette">{{ t.projets.fait }}</span>
+                        <ul>
+                            {% for f in p.fait %}<li>{{ f }}</li>{% endfor %}
+                        </ul>
+                    </div>
+                    <ul class="puces">
+                        {% for puce in p.puces %}<li>{{ puce }}</li>{% endfor %}
+                    </ul>
+                    <a class="lien" href="{{ p.lien }}" target="_blank" rel="noopener">{{ p.lien_texte }} <span class="fleche">↗</span></a>
+                </div>
+            </article>
+            {% endfor %}
+
+            {% for j in t.projets.jeux %}
+            <article class="projet reveler">
+                <div class="projet-visuel {{ 'sol' if not j.captures }}" data-incliner>
+                    {% if j.captures %}
+                    <div class="ecrans">
+                        {% for c in j.captures %}
+                        <img class="ecran ecran-{{ loop.index }}" src="/static/img/captures/{{ c }}.jpg" alt="{{ j.nom }}" loading="lazy">
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="grille-sol" aria-hidden="true"></div>
+                    <img class="icone-flottante" src="/static/img/icones/{{ j.icone }}.png" alt="{{ j.nom }}" loading="lazy">
+                    {% endif %}
+                </div>
+                <div class="projet-infos">
+                    <div class="projet-haut">
+                        <span class="etiquette">{{ j.etiquette }}</span>
+                        <span class="statut doux">{{ t.projets.statut_jeux }}</span>
+                    </div>
+                    <h3>{{ j.nom }}</h3>
+                    <p>{{ j.texte }}</p>
+                    <ul class="puces">
+                        {% for puce in j.puces %}<li>{{ puce }}</li>{% endfor %}
+                    </ul>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+
+        <div class="aussi reveler">
+            <p class="etiquette">{{ t.projets.aussi_titre }}</p>
+            <div class="aussi-grille">
+                {% for a in t.projets.aussi %}
+                <div class="aussi-item">
+                    {% if a.icone %}
+                    <img src="/static/img/icones/{{ a.icone }}.png" alt="" loading="lazy">
+                    {% else %}
+                    <span class="plus" aria-hidden="true">+2</span>
+                    {% endif %}
+                    <div>
+                        <strong>{{ a.nom }}</strong>
+                        <span>{{ a.texte }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ---------- Projets d'école ---------- #}
+<section class="section">
+    <div class="conteneur">
+        <div class="entete-section reveler">
+            <div>
+                <p class="etiquette"><span class="num">[05]</span>{{ t.ecole.etiquette }}</p>
+                <h2>{{ t.ecole.titre }}</h2>
+            </div>
+            <p>{{ t.ecole.texte }}</p>
+        </div>
+        <div class="ecole">
+            {% for e in t.ecole.liste %}
+            <article class="ecole-carte reveler">
+                <span class="etiquette">{{ e.code }}</span>
+                <h3>{{ e.titre }}</h3>
+                <p>{{ e.texte }}</p>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{# ---------- Parcours ---------- #}
+<section class="section" id="parcours">
+    <div class="conteneur">
+        <div class="entete-section reveler">
+            <div>
+                <p class="etiquette"><span class="num">[06]</span>{{ t.parcours.etiquette }}</p>
+                <h2>{{ t.parcours.titre }}</h2>
+            </div>
+        </div>
+        <ol class="parcours">
+            {% for e in t.parcours.etapes %}
+            <li class="etape reveler">
+                <span class="etiquette">{{ e.date }}</span>
+                <h3>{{ e.titre }}</h3>
+                <p>{{ e.lieu }}</p>
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
+</section>
+
+{# ---------- Loisirs ---------- #}
+<section class="section loisirs-section" id="loisirs">
+    <div class="conteneur">
+        <p class="etiquette reveler"><span class="num">[07]</span>{{ t.loisirs.etiquette }}</p>
+        <div class="loisirs">
+            {% for l in t.loisirs.liste %}
+            <div class="loisir reveler">
+                <h3>{{ l.titre }}</h3>
+                <span class="etiquette">{{ l.texte }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{# ---------- Contact ---------- #}
+<section class="contact" id="contact">
+    <div class="conteneur reveler">
+        <p class="etiquette"><span class="num">[08]</span>{{ t.contact.etiquette }}</p>
+        <h2>{{ t.contact.titre }}</h2>
+        <p>{{ t.contact.texte }}</p>
+        <div class="actions">
+            <a class="bouton" href="mailto:{{ email }}">{{ t.contact.bouton }} <span class="fleche">→</span></a>
+        </div>
+        <p class="etiquette email">{{ email }}</p>
+    </div>
+</section>
+
+{% endblock %}
