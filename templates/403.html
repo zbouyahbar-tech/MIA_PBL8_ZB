@@ -1,0 +1,10 @@
+{% extends "exercice.html" %}
+
+{% block numero %}403{% endblock %}
+{% block etiquette %}Accès interdit{% endblock %}
+
+{% block corps %}
+    <h1 class="titre-exercice">Halte-là ! 🐺⛔</h1>
+    <p class="aide">Cette page existe bien, mais vous n'avez pas le droit de la voir (erreur 403).</p>
+    <p><a class="bouton" href="/">Retour à l'accueil <span class="fleche">→</span></a></p>
+{% endblock %}

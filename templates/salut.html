@@ -1,0 +1,10 @@
+{% extends "exercice.html" %}
+
+{% block numero %}08{% endblock %}
+{% block etiquette %}Les formulaires{% endblock %}
+
+{% block corps %}
+    <h1 class="titre-exercice" style="color: {{ couleur }}">Bonjour {{ prenom }}, qui vient de {{ ville }} !</h1>
+    <p class="aide">(reçu en {{ methode }})</p>
+    <p><a class="bouton contour" href="/formulaire">Revenir au formulaire</a></p>
+{% endblock %}

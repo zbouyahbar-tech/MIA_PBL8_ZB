@@ -1,0 +1,20 @@
+{% extends "exercice.html" %}
+
+{% block numero %}10{% endblock %}
+{% block etiquette %}Ce que le serveur sait de vous{% endblock %}
+
+{% block corps %}
+    <h1 class="titre-exercice">Ce que je sais de vous 🔍</h1>
+    <dl class="infos">
+        <dt>Votre adresse IP</dt><dd>{{ ip }}</dd>
+        <dt>Votre navigateur</dt><dd>{{ navigateur or "non précisé" }}</dd>
+        <dt>Vos langues</dt><dd>{{ langues or "non précisées" }}</dd>
+    </dl>
+
+    <h2 class="sous-titre">Tous les en-têtes reçus</h2>
+    <ul class="entetes">
+    {% for nom, valeur in entetes %}
+        <li><strong>{{ nom }}</strong> <span>{{ valeur }}</span></li>
+    {% endfor %}
+    </ul>
+{% endblock %}

@@ -25,7 +25,10 @@
     }
     </script>
 </head>
-<body>
+{# Sur l'accueil, les liens du menu visent une section de la même page (#projets) ;
+   sur les pages de l'atelier, ils ramènent d'abord à l'accueil (/#projets). #}
+{% set ancre = '' if accueil else ('/' if lang == 'fr' else '/en') %}
+<body data-page="{{ 'accueil' if accueil else 'atelier' }}">
     {# Le fond 3D, dessiné par static/js/scene.js #}
     <canvas id="scene" aria-hidden="true"></canvas>
     <div class="voile" aria-hidden="true"></div>
@@ -35,16 +38,16 @@
     <nav class="menu">
         <a class="menu-nom" href="{{ '/' if lang == 'fr' else '/en' }}"><span class="pastille"></span>Zacharie Bouyahbar</a>
         <div class="menu-liens">
-            <a href="#projets">{{ t.menu.projets }}</a>
-            <a href="#parcours">{{ t.menu.parcours }}</a>
-            <a href="#apropos">{{ t.menu.apropos }}</a>
+            <a href="{{ ancre }}#projets">{{ t.menu.projets }}</a>
+            <a href="{{ ancre }}#parcours">{{ t.menu.parcours }}</a>
+            <a href="{{ ancre }}#apropos">{{ t.menu.apropos }}</a>
         </div>
         <div class="menu-droite">
             <div class="langues" aria-label="Langue / Language">
                 <a href="/" class="{{ 'actif' if lang == 'fr' }}" hreflang="fr">FR</a>
                 <a href="/en" class="{{ 'actif' if lang == 'en' }}" hreflang="en">EN</a>
             </div>
-            <a class="bouton petit" href="#contact">{{ t.menu.contact }}</a>
+            <a class="bouton petit" href="{{ ancre }}#contact">{{ t.menu.contact }}</a>
         </div>
     </nav>
 

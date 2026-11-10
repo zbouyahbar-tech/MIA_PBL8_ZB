@@ -1,0 +1,20 @@
+{% extends "exercice.html" %}
+
+{% block numero %}08{% endblock %}
+{% block etiquette %}Les formulaires{% endblock %}
+
+{% block corps %}
+    <h1 class="titre-exercice">Faisons connaissance</h1>
+    <form class="formulaire" action="/salut" method="post">
+        <label>Votre prénom <input type="text" name="prenom" autocomplete="given-name"></label>
+        <label>Votre ville <input type="text" name="ville" autocomplete="address-level2"></label>
+        <label>Votre couleur préférée
+            <select name="couleur">
+                <option value="tomato">Rouge</option>
+                <option value="teal">Vert</option>
+                <option value="royalblue">Bleu</option>
+            </select>
+        </label>
+        <button class="bouton" type="submit">Envoyer <span class="fleche">→</span></button>
+    </form>
+{% endblock %}

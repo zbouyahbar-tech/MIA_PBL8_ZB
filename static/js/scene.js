@@ -11,6 +11,8 @@ import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 const canvas = document.getElementById("scene");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const isSmall = window.innerWidth < 760;
+// Le Z n'apparaît que sur l'accueil ; les pages de l'atelier gardent seulement les fragments
+const avecMonogramme = document.body.dataset.page === "accueil";
 
 const COULEUR = new THREE.Color("#c9d0d2");
 const FOND = new THREE.Color("#000000");
@@ -171,7 +173,7 @@ function animer() {
 
   // Le Z s'éloigne jusqu'à disparaître dans le brouillard, puis n'est plus dessiné
   monogramme.position.z = -douce * 22;
-  monogramme.visible = progression < 1.05;
+  monogramme.visible = avecMonogramme && progression < 1.05;
 
   camera.position.x = sourisLissee.x * 0.35;
   camera.position.y = -sourisLissee.y * 0.25 - douce * 0.8;

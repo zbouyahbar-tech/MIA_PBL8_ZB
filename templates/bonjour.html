@@ -1,0 +1,11 @@
+{% extends "exercice.html" %}
+
+{% block numero %}07{% endblock %}
+{% block etiquette %}Une information dans le chemin{% endblock %}
+
+{% block corps %}
+    {# Le template échappe automatiquement {{ prenom }} : un visiteur
+       qui tape /bonjour/<button>... ne peut plus injecter de HTML. #}
+    <h1 class="titre-exercice">Bonjour {{ prenom }} !</h1>
+    <p class="aide">Changez le prénom à la fin de l'adresse : <code>/bonjour/Léa</code>, <code>/bonjour/Tom</code>…</p>
+{% endblock %}

@@ -928,6 +928,161 @@ a:hover .fleche {
     text-transform: none;
 }
 
+/* --- Pages de l'atelier (exercices 7 à 11) ---------------- */
+.page-exercice {
+    min-height: 100svh;
+    padding: 150px 0 80px;
+}
+
+.conteneur.etroit {
+    max-width: 860px;
+}
+
+.titre-exercice {
+    font-family: var(--titre);
+    font-weight: 500;
+    font-size: clamp(40px, 6.4vw, 88px);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    margin: 20px 0 24px;
+    overflow-wrap: anywhere;
+}
+
+.aide {
+    color: var(--texte-doux);
+    max-width: 56ch;
+}
+
+code {
+    font-family: var(--mono);
+    font-size: 0.9em;
+    background: rgba(201, 208, 210, 0.08);
+    border: 1px solid var(--ligne);
+    border-radius: 6px;
+    padding: 1px 6px;
+}
+
+.formulaire {
+    display: grid;
+    gap: 18px;
+    max-width: 460px;
+    margin-top: 32px;
+}
+
+.formulaire label {
+    display: grid;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--texte-doux);
+}
+
+.formulaire input,
+.formulaire select {
+    font: 16px var(--corps);
+    color: var(--texte);
+    background: rgba(18, 21, 22, 0.8);
+    border: 1px solid var(--ligne-forte);
+    border-radius: 10px;
+    padding: 12px 14px;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.formulaire input:focus,
+.formulaire select:focus {
+    outline: 2px solid var(--texte);
+    outline-offset: 1px;
+}
+
+.formulaire .bouton {
+    justify-self: start;
+    cursor: pointer;
+}
+
+.infos {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px 24px;
+    margin: 28px 0 0;
+    padding: 20px 0;
+    border-top: 1px solid var(--ligne);
+    border-bottom: 1px solid var(--ligne);
+}
+
+.infos dt {
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--texte-faible);
+    margin-top: 10px;
+}
+
+.infos dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.sous-titre {
+    font-family: var(--titre);
+    font-weight: 500;
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    margin: 48px 0 16px;
+}
+
+.entetes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: var(--mono);
+    font-size: 13px;
+}
+
+.entetes li {
+    display: grid;
+    gap: 2px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--ligne);
+}
+
+.entetes span {
+    color: var(--texte-doux);
+    overflow-wrap: anywhere;
+}
+
+.atelier-liens {
+    margin-top: 72px;
+    padding-top: 24px;
+    border-top: 1px solid var(--ligne);
+    display: grid;
+    gap: 14px;
+}
+
+.atelier-liens div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.atelier-liens a {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--texte-doux);
+    border: 1px solid var(--ligne);
+    border-radius: 999px;
+    padding: 6px 12px;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.atelier-liens a:hover {
+    color: var(--texte);
+    border-color: var(--ligne-forte);
+}
+
 /* --- Écrans plus larges ----------------------------------- */
 @media (min-width: 760px) {
     .projets {
@@ -954,6 +1109,19 @@ a:hover .fleche {
 
     .loisir {
         padding-right: 24px;
+    }
+
+    .infos {
+        grid-template-columns: 200px 1fr;
+    }
+
+    .infos dt {
+        margin-top: 0;
+    }
+
+    .entetes li {
+        grid-template-columns: 220px 1fr;
+        gap: 16px;
     }
 }
 

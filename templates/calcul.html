@@ -1,0 +1,14 @@
+{% extends "exercice.html" %}
+
+{% block numero %}07{% endblock %}
+{% block etiquette %}Des paramètres après le « ? »{% endblock %}
+
+{% block corps %}
+    {% if resultat %}
+    <h1 class="titre-exercice">{{ resultat }}</h1>
+    {% else %}
+    <h1 class="titre-exercice">Il me faut des nombres.</h1>
+    <p class="aide">Les paramètres <code>a</code> et <code>b</code> doivent être des nombres entiers, par exemple <code>/calcul?a=3&amp;b=4</code>.</p>
+    {% endif %}
+    <p class="aide">Changez les nombres dans l'adresse : <code>/calcul?a=6&amp;b=3&amp;op=fois</code> (op = plus, moins, fois ou divise).</p>
+{% endblock %}

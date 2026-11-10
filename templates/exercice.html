@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{# Gabarit commun des pages de l'atelier « Découvrir le Web » (exercices 7 à 11) #}
+{% block contenu %}
+<section class="page-exercice">
+    <div class="conteneur etroit">
+        <p class="etiquette"><span class="num">[{% block numero %}{% endblock %}]</span>{% block etiquette %}{% endblock %}</p>
+        {% block corps %}{% endblock %}
+
+        <nav class="atelier-liens" aria-label="Pages de l'atelier">
+            <span class="etiquette">Atelier « Découvrir le Web »</span>
+            <div>
+                <a href="/bonjour/Zacharie">/bonjour</a>
+                <a href="/calcul?a=6&amp;b=3&amp;op=fois">/calcul</a>
+                <a href="/formulaire">/formulaire</a>
+                <a href="/home">/home</a>
+                <a href="/secret">/secret</a>
+                <a href="/moi">/moi</a>
+                <a href="/api/heure">/api/heure</a>
+                <a href="/horloge">/horloge</a>
+            </div>
+        </nav>
+    </div>
+</section>
+{% endblock %}
