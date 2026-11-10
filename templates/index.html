@@ -133,13 +133,17 @@
                 <div class="projet-infos">
                     <div class="projet-haut">
                         <span class="etiquette">{{ j.etiquette }}</span>
-                        <span class="statut doux">{{ t.projets.statut_jeux }}</span>
+                        {# Un jeu publié a son propre statut ; les autres sont « en développement » #}
+                        <span class="statut {{ 'doux' if not j.statut }}">{{ j.statut or t.projets.statut_jeux }}</span>
                     </div>
                     <h3>{{ j.nom }}</h3>
                     <p>{{ j.texte }}</p>
                     <ul class="puces">
                         {% for puce in j.puces %}<li>{{ puce }}</li>{% endfor %}
                     </ul>
+                    {% if j.lien %}
+                    <a class="lien" href="{{ j.lien }}" target="_blank" rel="noopener">{{ j.lien_texte }} <span class="fleche">↗</span></a>
+                    {% endif %}
                 </div>
             </article>
             {% endfor %}

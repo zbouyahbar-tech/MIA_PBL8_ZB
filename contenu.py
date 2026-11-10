@@ -37,14 +37,14 @@ CONTENU = {
                 "AES-256 · RSA-2048", "Eurocodes", "Flask", "three.js"],
     "apropos": {
         "etiquette": L("À propos", "About"),
-        "texte": L("Élève ingénieur à l'ICAM Grand Paris Sud, je travaille depuis juillet 2025 dans la division IA d'ADERA-RD, où je développe Adera Scribe, publiée sur l'App Store. En stage chez ATHIS, j'ai réécrit de zéro leur application de calcul de structure.",
-                   "Engineering student at ICAM Grand Paris Sud, I have been working in ADERA-RD's AI division since July 2025, where I build Adera Scribe, live on the App Store. During my internship at ATHIS, I rewrote their structural engineering app from scratch."),
+        "texte": L("Élève ingénieur à l'ICAM Grand Paris Sud, je travaille depuis juillet 2025 dans la division IA d'ADERA-RD, où je développe Adera Scribe, publiée sur l'App Store. En stage chez ATHIS, j'ai réécrit de zéro leur application de calcul de structure, elle aussi en ligne sur l'App Store.",
+                   "Engineering student at ICAM Grand Paris Sud, I have been working in ADERA-RD's AI division since July 2025, where I build Adera Scribe, live on the App Store. During my internship at ATHIS, I rewrote their structural engineering app from scratch, now live on the App Store too."),
         "doux": L("Allier la rigueur scientifique au sens du produit.", "Combining scientific rigour with a feel for the product."),
         "chiffres": [
+            {"valeur": 3, "suffixe": "", "legende": L("applications publiées sur l'App Store", "apps live on the App Store")},
             {"valeur": 20000, "suffixe": "+", "legende": L("lignes de Swift pour ATHIS Construction", "lines of Swift for ATHIS Construction")},
             {"valeur": 16, "suffixe": "", "legende": L("jeux développés et testés", "games built and tested")},
             {"valeur": 860, "suffixe": "", "legende": L("niveaux générés pour Cascade", "generated levels in Cascade")},
-            {"valeur": 3, "suffixe": "", "legende": L("langues : français, anglais C1, allemand B2", "languages: French, English C1, German B2")},
         ],
     },
     "competences": {
@@ -74,8 +74,8 @@ CONTENU = {
     "projets": {
         "etiquette": L("Projets", "Work"),
         "titre": L("Ce que j'ai construit", "What I've built"),
-        "texte": L("Une application publiée, une application métier réécrite de zéro, et des jeux conçus de A à Z.",
-                   "One app live on the App Store, a professional app rewritten from scratch, and games designed end to end."),
+        "texte": L("Trois applications publiées sur l'App Store, dont une application métier réécrite de zéro, et des jeux conçus de A à Z.",
+                   "Three apps live on the App Store, including a professional app rewritten from scratch, and games designed end to end."),
         "voir": L("Voir le projet", "View project"),
         "fait": L("Ce que j'ai fait", "What I did"),
         "principaux": [
@@ -101,7 +101,7 @@ CONTENU = {
             {
                 "nom": "ATHIS Construction",
                 "etiquette": L("Stage · ATHIS · Bureau d'études", "Internship · ATHIS · Engineering firm"),
-                "statut": L("Réécrite en SwiftUI", "Rebuilt in SwiftUI"),
+                "statut": L("Publiée sur l'App Store", "Live on the App Store"),
                 "texte": L("L'application de calcul de structure d'ATHIS datait de 2016 et ne compilait plus. Je l'ai réécrite de zéro pour iPhone et iPad : calculs selon les Eurocodes et le BAEL, note de calcul exportée en PDF, et remplissage par IA (voix, photo de plan) qui fonctionne hors ligne.",
                            "ATHIS's structural engineering app dated from 2016 and no longer compiled. I rewrote it from scratch for iPhone and iPad: calculations following the Eurocodes and BAEL, PDF calculation reports, and AI-assisted input (voice, photo of a plan) that works offline."),
                 "fait": L(["Environ 20 000 lignes de Swift",
@@ -113,12 +113,24 @@ CONTENU = {
                            "Unit tests on the calculations",
                            "iPhone and iPad interface"]),
                 "puces": ["SwiftUI", "Eurocodes 2 · 3 · 5 · 7", "BAEL", "PDF", "Tests"],
-                "lien": "https://athis-conseil.fr/lapplication-construction/",
-                "lien_texte": L("Page de l'application", "App page"),
+                "lien": "https://apps.apple.com/fr/app/construction-full/id416557937",
+                "lien_texte": L("Voir sur l'App Store", "View on the App Store"),
                 "captures": ["athis-1", "athis-2", "athis-3"],
             },
         ],
         "jeux": [
+            {
+                "nom": "Cascade",
+                "etiquette": L("Jeu · Puzzle · App Store", "Game · Puzzle · App Store"),
+                "statut": L("Publié sur l'App Store", "Live on the App Store"),
+                "texte": L("Un puzzle de réactions en chaîne : 860 niveaux générés automatiquement et vérifiés par un solveur, répartis en 18 mondes, avec un défi quotidien.",
+                           "A chain-reaction puzzle: 860 automatically generated levels, each checked by a solver, across 18 worlds, plus a daily challenge."),
+                "puces": ["SpriteKit", L("Solveur", "Solver"), L("Génération procédurale", "Procedural generation")],
+                "icone": "cascade",
+                "captures": ["cascade-1", "cascade-2", "cascade-3"],
+                "lien": "https://apps.apple.com/fr/app/cascade-puzzle-en-chaîne/id6780939956",
+                "lien_texte": L("Voir sur l'App Store", "View on the App Store"),
+            },
             {
                 "nom": "Médina Rush",
                 "etiquette": L("Jeu · 3D · iOS", "Game · 3D · iOS"),
@@ -127,15 +139,6 @@ CONTENU = {
                 "puces": ["SceneKit", "Game Center", "FR · EN · AR"],
                 "icone": "medina-rush",
                 "captures": [],
-            },
-            {
-                "nom": "Cascade",
-                "etiquette": L("Jeu · Puzzle · iOS", "Game · Puzzle · iOS"),
-                "texte": L("Un puzzle de réactions en chaîne : 860 niveaux générés automatiquement et vérifiés par un solveur, répartis en 18 mondes, avec un défi quotidien.",
-                           "A chain-reaction puzzle: 860 automatically generated levels, each checked by a solver, across 18 worlds, plus a daily challenge."),
-                "puces": ["SpriteKit", L("Solveur", "Solver"), L("Génération procédurale", "Procedural generation")],
-                "icone": "cascade",
-                "captures": ["cascade-1", "cascade-2", "cascade-3"],
             },
             {
                 "nom": "Salon de Jeu",
