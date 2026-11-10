@@ -66,7 +66,9 @@ jobs:
             remote_path="${TARGET_DIR}/${rel}"
             echo " - ${rel} -> ${remote_path}"
 
-            curl -sS --fail -X POST \
+            # --retry : si PythonAnywhere répond 429 (trop de requêtes par minute),
+            # curl patiente puis réessaie au lieu de faire échouer le déploiement
+            curl -sS --fail --retry 8 --retry-max-time 300 -X POST \
               -H "Authorization: Token ${TOKEN}" \
               -F "content=@${file}" \
               "https://${HOST}/api/v0/user/${USER}/files/path${remote_path}" \
@@ -82,7 +84,7 @@ jobs:
           )
 
           echo "Reloading webapp ${DOMAIN}..."
-          curl -sS --fail -X POST \
+          curl -sS --fail --retry 8 --retry-max-time 300 -X POST \
             -H "Authorization: Token ${TOKEN}" \
             "https://${HOST}/api/v0/user/${USER}/webapps/${DOMAIN}/reload/" \
             >/dev/null
