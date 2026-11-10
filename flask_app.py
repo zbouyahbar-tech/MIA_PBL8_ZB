@@ -39,16 +39,19 @@ def accueil_anglais():
 # ---------------------------------------------------------------
 #  Ajoutez vos nouvelles routes ci-dessous 👇
 # ---------------------------------------------------------------
-# Ma présentation et mes loisirs sont maintenant des sections de l'accueil :
-# ces anciennes adresses renvoient vers la bonne section.
+# Mes loisirs, utilisés par les pages /presentation et /loisirs (exercices 2 et 4)
+LOISIRS = ["Le football, 12 ans en club", "Le piano", "Les sciences"]
+
+
+# Exercices 2 à 5 : ma page de présentation, fabriquée à partir d'un template
 @app.get("/presentation")
 def presentation():
-    return redirect("/#apropos")
+    return page("presentation.html", prenom="Zacharie", nom="Bouyahbar", loisirs=LOISIRS)
 
 
 @app.get("/loisirs")
 def loisirs():
-    return redirect("/#loisirs")
+    return page("loisirs.html", loisirs=LOISIRS)
 
 
 # Exercice 7 : une information dans le chemin
@@ -72,7 +75,7 @@ def calcul():
     if op == "plus":
         resultat = f"{a} + {b} = {a + b}"
     elif op == "moins":
-        resultat = f"{a} − {b} = {a - b}"
+        resultat = f"{a} - {b} = {a - b}"
     elif op == "fois":
         resultat = f"{a} × {b} = {a * b}"
     elif op == "divise":

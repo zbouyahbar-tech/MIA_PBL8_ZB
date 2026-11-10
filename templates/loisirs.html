@@ -1,0 +1,16 @@
+{% extends "exercice.html" %}
+
+{% block numero %}02{% endblock %}
+{% block etiquette %}Loisirs{% endblock %}
+
+{% block corps %}
+    <h1 class="titre-exercice">Mes loisirs</h1>
+    <ul class="liste-simple grande">
+    {% for loisir in loisirs %}
+        <li>{{ loisir }}</li>
+    {% endfor %}
+    </ul>
+    <p class="actions">
+        <a class="bouton contour" href="/presentation">Ma présentation</a>
+    </p>
+{% endblock %}

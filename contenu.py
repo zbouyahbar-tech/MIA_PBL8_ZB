@@ -22,6 +22,7 @@ CONTENU = {
         "projets": L("Projets", "Work"),
         "parcours": L("Parcours", "Journey"),
         "apropos": L("À propos", "About"),
+        "presentation": L("Présentation", "About me"),
         "contact": L("Me contacter", "Contact me"),
     },
     "heros": {

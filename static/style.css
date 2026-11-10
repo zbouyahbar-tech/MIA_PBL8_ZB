@@ -962,6 +962,56 @@ code {
     padding: 1px 6px;
 }
 
+.presentation-tete {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.logo-python {
+    width: 72px;
+    height: 72px;
+    padding: 12px;
+    border: 1px solid var(--ligne);
+    border-radius: 18px;
+    background: rgba(18, 21, 22, 0.8);
+}
+
+.chapeau-page {
+    font-size: clamp(18px, 1.8vw, 22px);
+    color: var(--texte-doux);
+    max-width: 44ch;
+}
+
+.chapeau-page strong {
+    color: var(--texte);
+    font-weight: 500;
+}
+
+.liste-simple {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--ligne);
+}
+
+.liste-simple li {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--ligne);
+    font-size: 18px;
+}
+
+.liste-simple.grande li {
+    font-family: var(--titre);
+    font-size: clamp(26px, 3.4vw, 44px);
+    letter-spacing: -0.02em;
+}
+
+.page-exercice .actions {
+    margin-top: 36px;
+}
+
 .formulaire {
     display: grid;
     gap: 18px;

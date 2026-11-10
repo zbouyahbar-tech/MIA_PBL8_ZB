@@ -1,0 +1,26 @@
+{% extends "exercice.html" %}
+
+{% block numero %}02{% endblock %}
+{% block etiquette %}Présentation{% endblock %}
+
+{% block corps %}
+    {# {{ prenom }} et {{ nom }} sont remplis par le serveur (exercice 4) :
+       le navigateur ne reçoit que le résultat final. #}
+    <div class="presentation-tete">
+        <img class="logo-python" src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="100" alt="Logo Python">
+        <h1 class="titre-exercice">{{ prenom }} {{ nom }}</h1>
+    </div>
+    <p class="chapeau-page">Je suis étudiant en <strong>école d'ingénieurs à l'ICAM Grand Paris Sud</strong>, et je développe des applications iPhone, des outils d'IA et des jeux.</p>
+
+    <h2 class="sous-titre">Ce que j'aime</h2>
+    <ul class="liste-simple">
+    {% for loisir in loisirs %}
+        <li>{{ loisir }}</li>
+    {% endfor %}
+    </ul>
+
+    <p class="actions">
+        <a class="bouton" href="/#projets">Voir mes projets <span class="fleche">→</span></a>
+        <a class="bouton contour" href="/loisirs">Mes loisirs</a>
+    </p>
+{% endblock %}
